@@ -1,10 +1,9 @@
 const mongoose = require("mongoose")
 const Klient = require("../models/klient")
 
-
+// lista wypozyczonych ksiazek
 exports.wypozycz_ksiazke = (req, res, next) => {
     const { klientId, ksiazkaId } = req.body;
-
     Klient.findByIdAndUpdate(klientId, { $push: { wypozyczone_ksiazki: ksiazkaId } }, { new: true })
         .populate("wypozyczone_ksiazki", "tytul")
         .then(klient => {
@@ -29,8 +28,7 @@ exports.klienci_lista = (req,res,next)=>{
     .catch(err => res.status(500).json({ wiadomośc: err.message }));
 }
 
-// nowy Klient
-
+// nowy klient
 exports.klienci_dodaj = (req, res, next) => {
     const { imie_nazw, rok_urodzenia } = req.body
     if (!imie_nazw || !rok_urodzenia) {
@@ -53,7 +51,7 @@ exports.klienci_dodaj = (req, res, next) => {
         .catch(err=> res.status(500).json({wiadomośc: err.message}))
 }
 
-// znajdz Klienta po Id
+// znajdz klienta po id
 exports.klienci_getById = (req, res, next) => {
     const klientId = req.params.klientId
     Klient.findById(klientId)
@@ -66,7 +64,7 @@ exports.klienci_getById = (req, res, next) => {
         .catch(err=> res.status(500).json({wiadomośc: err.message}))
 }
 
-// update Klienta
+// update klienta
 exports.klienci_update = (req, res, next) => {
     const klientId = req.params.klientId;
     Klient.findByIdAndUpdate(
@@ -85,9 +83,9 @@ exports.klienci_update = (req, res, next) => {
         .catch((err) => res.status(500).json({ wiadomość: err.message }));
 }
 
+// usun klienta
 exports.klienci_delete = (req, res, next) => {
     const klientId = req.params.klientId
-
     Klient.findOneAndDelete(klientId)
     .then(klient => {
         if (!klient) {
