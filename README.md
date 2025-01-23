@@ -134,11 +134,3 @@ Oczekiwana odpowiedź:
 | GET    | `/klienci/:klientId`   | Pobiera szczegóły wybranego klienta. |
 | PUT    | `/klienci/:klientId`   | Aktualizuje informacje o kliencie.   |
 | DELETE | `/klienci/:klientId`   | Usuwa klienta.                       |
-
-### Uwagi dotyczące użytkowania
-
-**Autoryzacja**  
-   Wszystkie punkty końcowe dotyczące tworzenia, edycji i usuwania zasobów (np. książki, autorzy, klienci) wymagają podania poprawnego tokenu JWT w nagłówku żądania:
-   ```
-   Authorization: Bearer <twój_token_jwt>
-   ```
