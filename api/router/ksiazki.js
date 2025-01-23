@@ -1,15 +1,13 @@
 const express = require("express")
 const router = express.Router();
+const ksiazkiController = require("../controllers/ksiazkiContr");
 
-const KsiazkiController = require("../controllers/ksiazkiContr")
-
-// lista ksiazek z info o autorze (populate)
-router.get("/",KsiazkiController.ksiazki_getAll )
-
-// dodanie nowej ksiazki
-router.post("/",KsiazkiController.ksiazki_dodaj )
-
-// liczba ksiazek na autora (agregazja, lookup)
-router.get("/autor-stats", KsiazkiController.ksiazki_autorStats)
+// Przykładowe trasy:
+router.get("/autor_stats", ksiazkiController.ksiazki_autorStats)
+router.get("/lista", ksiazkiController.ksiazki_lista)
+router.post("/dodaj", ksiazkiController.ksiazki_dodaj)
+router.get("/:ksiazkaId", ksiazkiController.ksiazki_getById)
+router.put("/:ksiazkaId", ksiazkiController.ksiazki_update)
+router.delete("/:ksiazkaId", ksiazkiController.ksiazki_delete)
 
 module.exports = router

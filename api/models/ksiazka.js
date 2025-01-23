@@ -1,12 +1,12 @@
 const mongoose = require("mongoose")
 
 const ksiazkaSchema = mongoose.Schema({
-    _id: mongoose.Types.ObjectID,
+    _id: mongoose.Types.ObjectId,
     tytul: {
         type: String,
         required: true,
     },
-    autor: { type: mongoose.Schema.Types.ObjectID, ref: "Autor"},
+    autor: { type: mongoose.Schema.Types.ObjectId, ref: "Autor"},
     rok: {
         type: Number,
         required: true,
